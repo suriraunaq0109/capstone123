@@ -1,0 +1,21 @@
+version: 3
+servises: 
+    db:
+        image: postgres
+        stdin_open: true
+        tty: true
+        ports: 
+            - "5432"
+        environment: 
+            - POSTGRES_db=caps
+            - POSTGRES_USER= postgres
+            - POSTGRES_PASSWORD=@Hundredyears1
+        web:
+            build: -
+            command: python manage.py runserver 
+            volumes:
+                - .:/code
+            ports: 
+                - "8000:8000"
+            depends_on:
+                - db
